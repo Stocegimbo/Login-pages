@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Livecast</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+        header {
+            background-color: orange;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            color: white;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #webcamContainer {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #webcamVideo {
+            width: 50%;
+            max-width: 600px;
+            border: 2px solid black;
+        }
+
+        #outputButton {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Webcam Livecast</h1>
+        <button id="enableWebcamButton" onclick="enableWebcam()">Enable Webcam</button>
+    </header>
+    <div id="webcamContainer">
+        <video id="webcamVideo" autoplay></video>
+    </div>
+    <button id="outputButton">Output</button>
+    <script>
+        // JavaScript code to enable webcam
+        async function enableWebcam() {
+            const video = document.getElementById('webcamVideo');
+
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+            } catch (err) {
+                console.error('Error accessing the webcam: ', err);
+            }
+        }
+
+        // JavaScript code to handle the output button functionality
+        document.getElementById('outputButton').addEventListener('click', function() {
+            // You can add your machine learning model output logic here
+            alert('Output button clicked!');
+        });
+    </script>
+</body>
+</html>
